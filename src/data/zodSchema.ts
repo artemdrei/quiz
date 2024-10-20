@@ -1,0 +1,49 @@
+import { z } from "zod";
+import { StepType } from "./stepTypes";
+
+const StepTypeEnum = z.nativeEnum(StepType);
+
+const BackgroundImageSchema = z.object({
+  src: z.string().url(),
+  alt: z.string(),
+});
+
+const BaseStepSchema = z.object({
+  id: z.number(),
+  path: z.string(),
+  next: z.number().nullable(),
+  type: StepTypeEnum,
+});
+
+export const WelcomeStepSchema = BaseStepSchema.extend({
+  type: z.string(),
+  content: z.object({
+    header: z.string(),
+    text: z.string(),
+    backgroundImage: BackgroundImageSchema.optional(),
+  }),
+});
+
+export const BirthDateStepSchema = BaseStepSchema.extend({
+  type: z.string(),
+  content: z.object({
+    header: z.string(),
+    question: z.string(),
+    backgroundImage: BackgroundImageSchema.optional(),
+  }),
+});
+
+export const ZodiacSignStepSchema = BaseStepSchema.extend({
+  type: z.string(),
+  content: z.object({
+    header: z.string(),
+    text: z.string(),
+    backgroundImage: BackgroundImageSchema.optional(),
+  }),
+});
+
+export const QuizSchema = z.object({
+  steps: z.array(
+    z.union([WelcomeStepSchema, BirthDateStepSchema, ZodiacSignStepSchema])
+  ),
+});

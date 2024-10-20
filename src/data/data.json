@@ -5,21 +5,42 @@
       "next": 2,
       "path": "welcome",
       "type": "ONBOARDING",
-      "content": "Hi, welcome to the Zodiac quiz!"
+      "content": {
+        "header": "Welcome",
+        "text": "Hi, welcome to the Zodiac quiz!",
+        "backgroundImage": {
+          "src": "https://img.freepik.com/free-photo/pastel-pink-oil-paint-textured_53876-94968.jpg?t=st=1729448931~exp=1729452531~hmac=bf804e31fdc7d68ebecbc33108c4a12b37746083419a278a80abc68997182acb&w=2000",
+          "alt": "Light pastel background"
+        }
+      }
     },
     {
       "id": 2,
       "next": 3,
       "path": "birth-date",
       "type": "DATE",
-      "question": "Please enter your birth date:"
+      "content": {
+        "header": "Birth Date",
+        "question": "Please enter your birth date:",
+        "backgroundImage": {
+          "src": "https://img.freepik.com/free-photo/faded-background_53876-89467.jpg?t=st=1729448967~exp=1729452567~hmac=60ef29eec520584041128d5e6ac46e4cc0a43197e3eb6709a9d85240e7feec91&w=2000",
+          "alt": "Light pastel background"
+        }
+      }
     },
     {
       "id": 3,
       "next": null,
       "path": "zodiac-sign",
       "type": "ZODIAC_SIGN",
-      "message": "Your Zodiac sign is:"
+      "content": {
+        "header": "Birth Date",
+        "text": "Your Zodiac sign is:",
+        "backgroundImage": {
+          "src": "https://img.freepik.com/premium-photo/abstract-pink-background-with-soft-glowing-light-shape-curve_1174990-222172.jpg?w=740",
+          "alt": "Light pastel background"
+        }
+      }
     }
   ]
 }

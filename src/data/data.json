@@ -1,0 +1,25 @@
+{
+  "steps": [
+    {
+      "id": 1,
+      "next": 2,
+      "path": "welcome",
+      "type": "ONBOARDING",
+      "content": "Hi, welcome to the Zodiac quiz!"
+    },
+    {
+      "id": 2,
+      "next": 3,
+      "path": "birth-date",
+      "type": "DATE",
+      "question": "Please enter your birth date:"
+    },
+    {
+      "id": 3,
+      "next": null,
+      "path": "zodiac-sign",
+      "type": "ZODIAC_SIGN",
+      "message": "Your Zodiac sign is:"
+    }
+  ]
+}

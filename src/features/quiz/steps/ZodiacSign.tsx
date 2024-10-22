@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 
-import { Layout } from '../../components/Layout';
-import { ZodiacSignStep } from '../../data/stepTypes';
+import { Layout } from '../../../components/Layout';
+import { ZodiacSignStep } from '../../../data/stepTypes';
 
 interface Props {
   data: ZodiacSignStep;

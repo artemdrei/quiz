@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { Box, TextField, Typography } from '@mui/material';
 
-import { Layout } from '../../components/Layout';
-import { BirthDateStep } from '../../data/stepTypes';
-import { ButtonNext } from '../../components/ButtonNext';
+import { Layout } from '../../../components/Layout';
+import { BirthDateStep } from '../../../data/stepTypes';
+import { ButtonNext } from '../../../components/ButtonNext';
 
 interface Props {
   data: BirthDateStep;

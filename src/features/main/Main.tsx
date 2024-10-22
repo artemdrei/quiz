@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { styled, Switch } from '@mui/material';
-import { Editor as MonacoEditor } from '@monaco-editor/react'; // Імпорт Monaco Editor з перейменуванням
 
-import { Flow } from '../flow/Flow';
 import config from '../../data/data.json';
+import { Quiz } from '../quiz/Quiz';
 import { prettifyJson } from '../../utils';
-import { Quiz } from '../../data/stepTypes';
+import { Quiz as QuizType } from '../../data/stepTypes';
+import { Editor } from '../editor/Editor';
 
 const AppContainerStyled = styled('div')`
   display: flex;
@@ -61,23 +61,14 @@ export const Main = () => {
   return (
     <AppContainerStyled>
       <FlowContainerStyled>
-        <Flow data={JSON.parse(data) as Quiz} />
+        <Quiz data={JSON.parse(data) as QuizType} />
         <SwitchWrapperStyled>
           JSON <Switch onChange={changeEditorMode} /> UI
         </SwitchWrapperStyled>
       </FlowContainerStyled>
 
       <EditorContainerStyled>
-        {isJsonEditorMode && (
-          <MonacoEditor
-            height="100%"
-            width="100%"
-            theme="vs-dark"
-            defaultLanguage="json"
-            defaultValue={data}
-            onChange={handleChange}
-          />
-        )}
+        {isJsonEditorMode && <Editor data={data} onChange={handleChange} />}
       </EditorContainerStyled>
     </AppContainerStyled>
   );

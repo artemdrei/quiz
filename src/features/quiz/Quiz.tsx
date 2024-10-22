@@ -1,16 +1,16 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 
-import { WelcomeScreen } from '../steps/Welcome';
-import { BirthDateScreen } from '../steps/BirthDate';
-import { ZodiacSignScreen } from '../steps/ZodiacSign';
-import { WelcomeStep, BirthDateStep, ZodiacSignStep, Quiz } from '../../data/stepTypes';
+import { WelcomeScreen } from './steps/Welcome';
+import { BirthDateScreen } from './steps/BirthDate';
+import { ZodiacSignScreen } from './steps/ZodiacSign';
+import { WelcomeStep, BirthDateStep, ZodiacSignStep, Quiz as QuizType } from '../../data/stepTypes';
 
 interface Props {
-  data: Quiz;
+  data: QuizType;
 }
 
-export const Flow: React.FC<Props> = ({ data }) => {
+export const Quiz: React.FC<Props> = ({ data }) => {
   const routes = data.steps.map((step) => {
     if (step.type === 'ONBOARDING') {
       return {

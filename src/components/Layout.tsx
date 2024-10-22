@@ -9,6 +9,7 @@ const WrapperStyled = styled(Box)<{ path?: string }>`
 interface LayoutProps {
   header: string;
   children: React.ReactNode;
+  footer?: { buttonNext?: string };
   backgroundImage?: {
     src: string;
     alt: string;
@@ -18,6 +19,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({
   header,
+  footer,
   children,
   backgroundImage,
   onNext,
@@ -44,16 +46,18 @@ const Layout: React.FC<LayoutProps> = ({
             {children}
           </Box>
 
-          <Button
-            fullWidth
-            sx={{ marginBottom: "20px;" }}
-            size="large"
-            variant="contained"
-            color="primary"
-            onClick={onNext}
-          >
-            Next
-          </Button>
+          {footer?.buttonNext && (
+            <Button
+              fullWidth
+              sx={{ marginBottom: "20px;" }}
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={onNext}
+            >
+              {footer?.buttonNext}
+            </Button>
+          )}
         </Box>
       </Container>
     </WrapperStyled>

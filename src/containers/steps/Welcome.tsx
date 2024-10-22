@@ -15,6 +15,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   return (
     <Layout
       header={content.header}
+      footer={content.footer}
       backgroundImage={content.backgroundImage}
       onNext={onNext}
     >

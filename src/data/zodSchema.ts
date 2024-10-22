@@ -8,6 +8,10 @@ const BackgroundImageSchema = z.object({
   alt: z.string(),
 });
 
+const FooterSchema = z.object({
+  buttonNext: z.string().optional(),
+});
+
 const BaseStepSchema = z.object({
   id: z.number(),
   path: z.string(),
@@ -21,6 +25,7 @@ export const WelcomeStepSchema = BaseStepSchema.extend({
     header: z.string(),
     text: z.string(),
     backgroundImage: BackgroundImageSchema.optional(),
+    footer: FooterSchema.optional(),
   }),
 });
 
@@ -30,6 +35,7 @@ export const BirthDateStepSchema = BaseStepSchema.extend({
     header: z.string(),
     question: z.string(),
     backgroundImage: BackgroundImageSchema.optional(),
+    footer: FooterSchema.optional(),
   }),
 });
 

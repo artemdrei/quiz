@@ -17,6 +17,7 @@ export const BirthDateScreen: React.FC<BirthDateScreenProps> = ({
   return (
     <Layout
       header={content.header}
+      footer={content.footer}
       backgroundImage={content.backgroundImage}
       onNext={() => onDateSubmit(date)}
     >

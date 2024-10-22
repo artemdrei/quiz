@@ -1,5 +1,5 @@
-import React from "react";
-import { Container, Box, Button, Typography, styled } from "@mui/material";
+import React, { ReactNode } from "react";
+import { Container, Box, Typography, styled } from "@mui/material";
 
 const WrapperStyled = styled(Box)<{ path?: string }>`
   background: url(${({ path }) => path});
@@ -9,20 +9,18 @@ const WrapperStyled = styled(Box)<{ path?: string }>`
 interface LayoutProps {
   header: string;
   children: React.ReactNode;
-  footer?: { buttonNext?: string };
   backgroundImage?: {
     src: string;
     alt: string;
   };
-  onNext: () => void;
+  buttonNext?: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({
+export const Layout: React.FC<LayoutProps> = ({
   header,
-  footer,
   children,
+  buttonNext,
   backgroundImage,
-  onNext,
 }) => {
   return (
     <WrapperStyled path={backgroundImage?.src}>
@@ -33,9 +31,11 @@ const Layout: React.FC<LayoutProps> = ({
           justifyContent="space-between"
           height="100vh"
         >
-          <Typography variant="h5" mt={"20px"}>
-            {header}
-          </Typography>
+          {header && (
+            <Typography variant="h5" mt={"20px"}>
+              {header}
+            </Typography>
+          )}
 
           <Box
             flexGrow={1}
@@ -46,22 +46,9 @@ const Layout: React.FC<LayoutProps> = ({
             {children}
           </Box>
 
-          {footer?.buttonNext && (
-            <Button
-              fullWidth
-              sx={{ marginBottom: "20px;" }}
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={onNext}
-            >
-              {footer?.buttonNext}
-            </Button>
-          )}
+          {buttonNext}
         </Box>
       </Container>
     </WrapperStyled>
   );
 };
-
-export default Layout;

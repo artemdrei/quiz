@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  RouteObject,
+} from "react-router-dom";
+
 import { WelcomeScreen } from "../steps/Welcome";
 import { BirthDateScreen } from "../steps/BirthDate";
 import { ZodiacSignScreen } from "../steps/ZodiacSign";
@@ -10,52 +16,35 @@ import {
 } from "../../data/stepTypes";
 
 export const Flow: React.FC = () => {
-  const [step, setStep] = useState(1);
-  const [zodiacSign, setZodiacSign] = useState("");
-
-  const handleDateSubmit = (date: string) => {
-    const zodiac = calculateZodiacSign(date);
-    setZodiacSign(zodiac);
-    setStep(3);
-  };
-
-  const calculateZodiacSign = (date: string): string => {
-    const birthDate = new Date(date);
-    const day = birthDate.getDate();
-    const month = birthDate.getMonth() + 1;
-
-    if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) {
-      return "Aries";
+  const routes = quizData.steps.map((step) => {
+    if (step.type === "ONBOARDING") {
+      return {
+        path: step.path,
+        element: <WelcomeScreen data={step as WelcomeStep} />,
+      };
     }
-    return "Unknown";
-  };
 
-  const currentStep = quizData.steps.find((s) => s.id === step);
+    if (step.type === "DATE") {
+      return {
+        path: step.path,
+        element: <BirthDateScreen data={step as BirthDateStep} />,
+      };
+    }
 
-  if (!currentStep) {
-    return <div>Error: Step not found</div>;
-  }
+    if (step.type === "ZODIAC_SIGN") {
+      return {
+        path: step.path,
+        element: <ZodiacSignScreen data={step as ZodiacSignStep} />,
+      };
+    }
 
-  return (
-    <div>
-      {step === 1 && (
-        <WelcomeScreen
-          content={currentStep.content as WelcomeStep["content"]}
-          onNext={() => setStep(currentStep.next || 2)}
-        />
-      )}
-      {step === 2 && (
-        <BirthDateScreen
-          content={currentStep.content as BirthDateStep["content"]}
-          onDateSubmit={handleDateSubmit}
-        />
-      )}
-      {step === 3 && (
-        <ZodiacSignScreen
-          zodiacSign={zodiacSign}
-          content={currentStep.content as ZodiacSignStep["content"]}
-        />
-      )}
-    </div>
-  );
+    return {
+      path: "*",
+      element: <WelcomeScreen data={step as WelcomeStep} />,
+    };
+  }) satisfies RouteObject[];
+
+  const router = createBrowserRouter([...routes]);
+
+  return <RouterProvider router={router} />;
 };

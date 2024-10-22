@@ -1,9 +1,9 @@
 {
   "steps": [
     {
-      "id": 1,
-      "next": 2,
+      "id": "fb97956a-9fff-4949-8a35-6ad20f241217",
       "path": "welcome",
+      "pathNext": "birth-date",
       "type": "ONBOARDING",
       "content": {
         "header": "Welcome",
@@ -18,9 +18,9 @@
       }
     },
     {
-      "id": 2,
-      "next": 3,
+      "id": "29d0c7c0-85ff-4a30-85bb-e143e826f2da",
       "path": "birth-date",
+      "pathNext": "zodiac-sign",
       "type": "DATE",
       "content": {
         "header": "Birth Date",
@@ -35,9 +35,9 @@
       }
     },
     {
-      "id": 3,
-      "next": null,
+      "id": "8558cdbc-5ad7-4e1e-a903-d3a61bf4ff0d",
       "path": "zodiac-sign",
+      "pathNext": "",
       "type": "ZODIAC_SIGN",
       "content": {
         "header": "Birth Date",

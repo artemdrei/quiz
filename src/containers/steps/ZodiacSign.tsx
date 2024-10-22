@@ -1,26 +1,21 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import Layout from "../../components/Layout";
 
+import { Layout } from "../../components/Layout";
 import { ZodiacSignStep } from "../../data/stepTypes";
 
-interface ZodiacSignScreenProps {
-  zodiacSign: string;
-  content: ZodiacSignStep["content"];
+interface Props {
+  data: ZodiacSignStep;
 }
 
-export const ZodiacSignScreen: React.FC<ZodiacSignScreenProps> = ({
-  content,
-  zodiacSign,
-}) => {
+export const ZodiacSignScreen: React.FC<Props> = ({ data }) => {
   return (
     <Layout
-      header={content.header}
-      backgroundImage={content.backgroundImage}
-      onNext={() => {}}
+      header={data.content.header}
+      backgroundImage={data.content.backgroundImage}
     >
       <Typography variant="h6" align="center">
-        {content.text} {zodiacSign}
+        {data.content.text}
       </Typography>
     </Layout>
   );

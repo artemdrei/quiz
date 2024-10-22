@@ -1,28 +1,34 @@
 import React, { useState } from "react";
-import { Box, TextField, Typography } from "@mui/material";
-import Layout from "../../components/Layout";
-import { BirthDateStep } from "../../data/stepTypes";
+import { useNavigate } from "react-router-dom";
 
-interface BirthDateScreenProps {
-  content: BirthDateStep["content"];
-  onDateSubmit: (date: string) => void;
+import { Box, TextField, Typography } from "@mui/material";
+
+import { Layout } from "../../components/Layout";
+import { BirthDateStep } from "../../data/stepTypes";
+import { ButtonNext } from "../../components/ButtonNext";
+
+interface Props {
+  data: BirthDateStep;
 }
 
-export const BirthDateScreen: React.FC<BirthDateScreenProps> = ({
-  content,
-  onDateSubmit,
-}) => {
+export const BirthDateScreen: React.FC<Props> = ({ data }) => {
+  const navigate = useNavigate();
+
   const [date, setDate] = useState("");
 
   return (
     <Layout
-      header={content.header}
-      footer={content.footer}
-      backgroundImage={content.backgroundImage}
-      onNext={() => onDateSubmit(date)}
+      header={data.content.header}
+      backgroundImage={data.content.backgroundImage}
+      buttonNext={
+        <ButtonNext
+          label={data.content.footer?.buttonNext}
+          onNext={() => navigate(`/${data.pathNext}`)}
+        />
+      }
     >
       <Box sx={{ width: "100%" }}>
-        <Typography mb={"12px"}>{content.question}</Typography>
+        <Typography mb={"12px"}>{data.content.question}</Typography>
         <TextField
           fullWidth
           type="date"

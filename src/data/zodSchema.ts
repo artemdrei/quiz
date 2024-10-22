@@ -13,9 +13,9 @@ const FooterSchema = z.object({
 });
 
 const BaseStepSchema = z.object({
-  id: z.number(),
+  id: z.string(),
   path: z.string(),
-  next: z.number().nullable(),
+  pathNext: z.string(),
   type: StepTypeEnum,
 });
 

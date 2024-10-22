@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export enum StepType {
-  WELCOME = "WELCOME",
   DATE = "DATE",
+  WELCOME = "WELCOME",
   ZODIAC_SIGN = "ZODIAC_SIGN",
 }
 

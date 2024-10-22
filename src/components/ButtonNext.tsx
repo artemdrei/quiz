@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "@mui/material";
+import React from 'react';
+import { Button } from '@mui/material';
 
 interface Props {
   label?: string;
@@ -11,14 +11,14 @@ export const ButtonNext: React.FC<Props> = ({ label, className, onNext }) => {
   return (
     <Button
       fullWidth
-      sx={{ marginBottom: "20px;" }}
+      sx={{ marginBottom: '20px;' }}
       size="large"
       variant="contained"
       color="primary"
       className={className}
       onClick={onNext}
     >
-      {label || "Next"}
+      {label || 'Next'}
     </Button>
   );
 };

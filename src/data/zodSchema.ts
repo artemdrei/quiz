@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { StepType } from "./stepTypes";
+import { z } from 'zod';
+import { StepType } from './stepTypes';
 
 const StepTypeEnum = z.nativeEnum(StepType);
 
@@ -49,7 +49,5 @@ export const ZodiacSignStepSchema = BaseStepSchema.extend({
 });
 
 export const QuizSchema = z.object({
-  steps: z.array(
-    z.union([WelcomeStepSchema, BirthDateStepSchema, ZodiacSignStepSchema])
-  ),
+  steps: z.array(z.union([WelcomeStepSchema, BirthDateStepSchema, ZodiacSignStepSchema])),
 });

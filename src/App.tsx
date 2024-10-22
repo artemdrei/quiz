@@ -1,9 +1,7 @@
-import { Flow } from './features/flow/Flow';
-
 import { createTheme, ThemeProvider, CssBaseline, GlobalStyles } from '@mui/material';
+import { Main } from './features/main/Main';
 
 const theme = createTheme();
-
 const globalStyles = <GlobalStyles styles={{ '*': { margin: 0, padding: 0, boxSizing: 'border-box' } }} />;
 
 const App = () => {
@@ -12,7 +10,7 @@ const App = () => {
       <CssBaseline />
       {globalStyles}
 
-      <Flow />
+      <Main />
     </ThemeProvider>
   );
 };

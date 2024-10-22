@@ -4,11 +4,14 @@ import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-d
 import { WelcomeScreen } from '../steps/Welcome';
 import { BirthDateScreen } from '../steps/BirthDate';
 import { ZodiacSignScreen } from '../steps/ZodiacSign';
-import quizData from '../../data/data.json';
-import { WelcomeStep, BirthDateStep, ZodiacSignStep } from '../../data/stepTypes';
+import { WelcomeStep, BirthDateStep, ZodiacSignStep, Quiz } from '../../data/stepTypes';
 
-export const Flow: React.FC = () => {
-  const routes = quizData.steps.map((step) => {
+interface Props {
+  data: Quiz;
+}
+
+export const Flow: React.FC<Props> = ({ data }) => {
+  const routes = data.steps.map((step) => {
     if (step.type === 'ONBOARDING') {
       return {
         path: step.path,

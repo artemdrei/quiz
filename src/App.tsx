@@ -11,17 +11,7 @@ const theme = createTheme();
 
 const globalStyles = (
   <GlobalStyles
-    styles={{
-      "*": {
-        margin: 0,
-        padding: 0,
-        boxSizing: "border-box",
-      },
-      body: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-        backgroundColor: "#f0f0f0",
-      },
-    }}
+    styles={{ "*": { margin: 0, padding: 0, boxSizing: "border-box" } }}
   />
 );
 

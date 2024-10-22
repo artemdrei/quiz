@@ -1,4 +1,4 @@
-import { Flow } from "./containers/flow/Flow";
+import { Flow } from "./features/flow/Flow";
 
 import {
   createTheme,

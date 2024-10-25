@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, RouteObject, Navigate } from 'react-router-dom';
 
 import { WelcomeScreen } from './steps/Welcome';
 import { BirthDateScreen } from './steps/BirthDate';
@@ -12,7 +12,7 @@ interface Props {
 
 export const Quiz: React.FC<Props> = ({ data }) => {
   const routes = data.steps.map((step) => {
-    if (step.type === 'ONBOARDING') {
+    if (step.type === 'WELCOME') {
       return {
         path: step.path,
         element: <WelcomeScreen data={step as WelcomeStep} />,
@@ -38,6 +38,11 @@ export const Quiz: React.FC<Props> = ({ data }) => {
       element: <WelcomeScreen data={step as WelcomeStep} />,
     };
   }) satisfies RouteObject[];
+
+  routes.push({
+    path: '*',
+    element: <Navigate to="/welcome" replace />,
+  });
 
   const router = createBrowserRouter([...routes]);
 

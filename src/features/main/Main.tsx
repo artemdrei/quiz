@@ -5,7 +5,7 @@ import config from '../../data/data.json';
 import { Quiz } from '../quiz/Quiz';
 import { prettifyJson } from '../../utils';
 import { Quiz as QuizType } from '../../data/stepTypes';
-import { Editor } from '../editor/Editor';
+import { JsonEditor } from '../jsonEditor/JsonEditor';
 
 const AppContainerStyled = styled('div')`
   display: flex;
@@ -62,13 +62,14 @@ export const Main = () => {
     <AppContainerStyled>
       <FlowContainerStyled>
         <Quiz data={JSON.parse(data) as QuizType} />
+
         <SwitchWrapperStyled>
           JSON <Switch onChange={changeEditorMode} /> UI
         </SwitchWrapperStyled>
       </FlowContainerStyled>
 
       <EditorContainerStyled>
-        {isJsonEditorMode && <Editor data={data} onChange={handleChange} />}
+        {isJsonEditorMode && <JsonEditor data={data} onChange={handleChange} />}
       </EditorContainerStyled>
     </AppContainerStyled>
   );

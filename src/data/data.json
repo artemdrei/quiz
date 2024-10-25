@@ -4,7 +4,7 @@
       "id": "fb97956a-9fff-4949-8a35-6ad20f241217",
       "path": "welcome",
       "pathNext": "birth-date",
-      "type": "ONBOARDING",
+      "type": "WELCOME",
       "content": {
         "header": "Welcome",
         "text": "Hi, welcome to the Zodiac quiz!",

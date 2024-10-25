@@ -5,7 +5,7 @@ interface Props {
   onChange: EditorProps['onChange'];
 }
 
-export const Editor: React.FC<Props> = ({ data, onChange }) => {
+export const JsonEditor: React.FC<Props> = ({ data, onChange }) => {
   return (
     <MonacoEditor
       height="100%"

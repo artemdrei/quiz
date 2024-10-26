@@ -5,13 +5,17 @@ import { WelcomeScreen } from './steps/Welcome';
 import { BirthDateScreen } from './steps/BirthDate';
 import { ZodiacSignScreen } from './steps/ZodiacSign';
 import { WelcomeStep, BirthDateStep, ZodiacSignStep, Quiz as QuizType } from '../../data/stepTypes';
+import { EditorsContainer } from '../editors/editorsContainer/EditorsContainer';
 
 interface Props {
-  data: QuizType;
+  data: string;
+  setData: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Quiz: React.FC<Props> = ({ data }) => {
-  const routes = data.steps.map((step) => {
+export const Quiz: React.FC<Props> = ({ data, setData }) => {
+  const parsedData = JSON.parse(data) as QuizType;
+
+  const routes = parsedData.steps.map((step) => {
     if (step.type === 'WELCOME') {
       return {
         path: step.path,
@@ -44,7 +48,9 @@ export const Quiz: React.FC<Props> = ({ data }) => {
     element: <Navigate to="/welcome" replace />,
   });
 
-  const router = createBrowserRouter([...routes]);
+  const r = [{ path: '/', element: <EditorsContainer data={data} setData={setData} />, children: routes }];
 
-  return <RouterProvider router={router} />;
+  const router = createBrowserRouter([...r]);
+
+  return <RouterProvider router={router}></RouterProvider>;
 };

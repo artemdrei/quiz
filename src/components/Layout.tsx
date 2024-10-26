@@ -6,6 +6,10 @@ const WrapperStyled = styled(Box)<{ path?: string }>`
   background-size: cover;
 `;
 
+const TitleStyled = styled(Typography)`
+  margin-top: 20px;
+`;
+
 interface LayoutProps {
   header: string;
   children: React.ReactNode;
@@ -21,11 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({ header, children, buttonNext, ba
     <WrapperStyled path={backgroundImage?.src}>
       <Container maxWidth="sm">
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-          {header && (
-            <Typography variant="h5" mt={'20px'}>
-              {header}
-            </Typography>
-          )}
+          {header && <TitleStyled variant="h5">{header}</TitleStyled>}
 
           <Box flexGrow={1} display="flex" justifyContent="center" alignItems="center">
             {children}

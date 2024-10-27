@@ -22,9 +22,7 @@ export const WelcomeScreen: React.FC<Props> = ({ data }) => {
         <ButtonNext label={data.content.footer?.buttonNext} onNext={() => navigate(`/${data.pathNext}`)} />
       }
     >
-      <Typography variant="h6" align="center">
-        {data.content.text}
-      </Typography>
+      <Typography variant="h6" align="center" dangerouslySetInnerHTML={{ __html: data.content.text }} />
     </Layout>
   );
 };

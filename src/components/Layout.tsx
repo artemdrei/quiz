@@ -25,7 +25,14 @@ export const Layout: React.FC<LayoutProps> = ({ header, children, buttonNext, ba
     <WrapperStyled path={backgroundImage?.src}>
       <Container maxWidth="sm">
         <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
-          {header && <TitleStyled variant="h5">{header}</TitleStyled>}
+          {header && (
+            <TitleStyled
+              variant="h4"
+              color="textSecondary"
+              textAlign="center"
+              dangerouslySetInnerHTML={{ __html: header }}
+            />
+          )}
 
           <Box flexGrow={1} display="flex" justifyContent="center" alignItems="center">
             {children}

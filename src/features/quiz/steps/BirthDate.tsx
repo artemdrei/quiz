@@ -25,7 +25,7 @@ export const BirthDateScreen: React.FC<Props> = ({ data }) => {
       }
     >
       <Box sx={{ width: '100%' }}>
-        <Typography mb={'12px'}>{data.content.question}</Typography>
+        <Typography mb={'12px'} dangerouslySetInnerHTML={{ __html: data.content.question }} />
         <TextField fullWidth type="date" value={date} onChange={(e) => setDate(e.target.value)} />
       </Box>
     </Layout>

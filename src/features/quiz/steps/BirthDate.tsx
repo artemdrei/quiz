@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Typography, TextField } from '@mui/material';
 
 import { Layout } from '../../../components/Layout';
 import { BirthDateStep } from '../../../data/stepTypes';
 import { ButtonNext } from '../../../components/ButtonNext';
+import { useAnswersContext } from '../answersContext/useAnswerContext';
 
 interface Props {
   data: BirthDateStep;
@@ -13,8 +14,13 @@ interface Props {
 
 export const BirthDateScreen: React.FC<Props> = ({ data }) => {
   const navigate = useNavigate();
+  const { setDateOfBirth } = useAnswersContext();
 
-  const [date, setDate] = useState('');
+  const [value, setValue] = React.useState<string>('2001-01-01');
+
+  useEffect(() => {
+    setDateOfBirth(value);
+  }, [value, setDateOfBirth]);
 
   return (
     <Layout
@@ -25,8 +31,16 @@ export const BirthDateScreen: React.FC<Props> = ({ data }) => {
       }
     >
       <Box sx={{ width: '100%' }}>
-        <Typography mb={'12px'} dangerouslySetInnerHTML={{ __html: data.content.question }} />
-        <TextField fullWidth type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <Typography mb={'20px'} dangerouslySetInnerHTML={{ __html: data.content.question }} />
+        <TextField
+          label="Controlled field"
+          type="date"
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.value);
+            setDateOfBirth(event.target.value);
+          }}
+        />
       </Box>
     </Layout>
   );

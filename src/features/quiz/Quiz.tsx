@@ -6,6 +6,7 @@ import { BirthDateScreen } from './steps/BirthDate';
 import { ZodiacSignScreen } from './steps/ZodiacSign';
 import { WelcomeStep, BirthDateStep, ZodiacSignStep, Quiz as QuizType } from '../../data/stepTypes';
 import { EditorsContainer } from '../editors/editorsContainer/EditorsContainer';
+import { AnswersProvider } from './answersContext/AnswersContext';
 
 interface Props {
   data: string;
@@ -48,9 +49,19 @@ export const Quiz: React.FC<Props> = ({ data, setData }) => {
     element: <Navigate to="/welcome" replace />,
   });
 
-  const r = [{ path: '/', element: <EditorsContainer data={data} setData={setData} />, children: routes }];
+  const allRouts = [
+    {
+      path: '/',
+      element: (
+        <AnswersProvider>
+          <EditorsContainer data={data} setData={setData} />
+        </AnswersProvider>
+      ),
+      children: routes,
+    },
+  ];
 
-  const router = createBrowserRouter([...r]);
+  const router = createBrowserRouter(allRouts);
 
   return <RouterProvider router={router}></RouterProvider>;
 };

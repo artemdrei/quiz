@@ -1,9 +1,11 @@
 import React from 'react';
-import { styled, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
+import dayjs from 'dayjs';
 
 import { Layout } from '../../../components/Layout';
 import { ZodiacSignStep } from '../../../data/stepTypes';
 import { getZodiacSign } from '../../../utils';
+import { useAnswersContext } from '../answersContext/useAnswerContext';
 
 const ZodiacSignStyled = styled(Typography)`
   margin-bottom: 32px;
@@ -25,18 +27,36 @@ interface Props {
 }
 
 export const ZodiacSignScreen: React.FC<Props> = ({ data }) => {
-  const zodiacSign = getZodiacSign({ month: 1, day: 20 });
+  const { dateOfBirth } = useAnswersContext();
+
+  const date = dayjs(dateOfBirth);
+  const month = date.month() + 1; // human first month starts from 1 not from 0
+  const day = date.day();
+
+  if (!month || !day)
+    return (
+      <Layout header={data.content.header} backgroundImage={data.content.backgroundImage}>
+        <TitleStyled>Select date on the previous step</TitleStyled>
+      </Layout>
+    );
+
+  const zodiacSign = getZodiacSign({ month, day });
 
   return (
     <Layout header={data.content.header} backgroundImage={data.content.backgroundImage}>
-      <Typography variant="h6" align="center">
-        <ZodiacSignStyled variant="h1">{zodiacSign.emoji}</ZodiacSignStyled>
-        <TitleStyled>
-          <span dangerouslySetInnerHTML={{ __html: data.content.text }} />
-          <b>{zodiacSign.name}</b>
-        </TitleStyled>
-        <DescriptionStyled dangerouslySetInnerHTML={{ __html: zodiacSign.description }} />
-      </Typography>
+      <Box flexDirection="column">
+        <ZodiacSignStyled variant="h1" textAlign="center">
+          {zodiacSign.emoji}
+        </ZodiacSignStyled>
+
+        <Box>
+          <TitleStyled>
+            <span dangerouslySetInnerHTML={{ __html: data.content.text }} />
+            <b>{zodiacSign.name}</b>
+          </TitleStyled>
+          <DescriptionStyled dangerouslySetInnerHTML={{ __html: zodiacSign.description }} />
+        </Box>
+      </Box>
     </Layout>
   );
 };

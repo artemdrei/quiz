@@ -30,7 +30,7 @@ export const BirthDateScreen: React.FC<Props> = ({ data }) => {
         <ButtonNext label={data.content.footer?.buttonNext} onNext={() => navigate(`/${data.pathNext}`)} />
       }
     >
-      <Box sx={{ width: '100%' }}>
+      <Box>
         <Typography mb={'20px'} dangerouslySetInnerHTML={{ __html: data.content.question }} />
         <TextField
           label="Controlled field"

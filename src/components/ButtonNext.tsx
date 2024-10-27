@@ -1,5 +1,9 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, styled } from '@mui/material';
+
+const ButtonStyled = styled(Button)`
+  margin-bottom: 20px;
+`;
 
 interface Props {
   label?: string;
@@ -9,9 +13,8 @@ interface Props {
 
 export const ButtonNext: React.FC<Props> = ({ label, className, onNext }) => {
   return (
-    <Button
+    <ButtonStyled
       fullWidth
-      sx={{ marginBottom: '20px;' }}
       size="large"
       variant="contained"
       color="primary"
@@ -19,6 +22,6 @@ export const ButtonNext: React.FC<Props> = ({ label, className, onNext }) => {
       onClick={onNext}
     >
       {label || 'Next'}
-    </Button>
+    </ButtonStyled>
   );
 };

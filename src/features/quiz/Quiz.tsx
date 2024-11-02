@@ -46,7 +46,7 @@ export const Quiz: React.FC<Props> = ({ data, setData }) => {
 
   routes.push({
     path: '*',
-    element: <Navigate to="/welcome" replace />,
+    element: <Navigate to="welcome" replace />,
   });
 
   const allRouts = [

@@ -9,7 +9,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {globalStyles}
-
       <Main />
     </ThemeProvider>
   );

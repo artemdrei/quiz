@@ -13,40 +13,43 @@ interface Props {
   setData: React.Dispatch<React.SetStateAction<string>>;
 }
 
+const basePath = '/quiz';
+
 export const Quiz: React.FC<Props> = ({ data, setData }) => {
   const parsedData = JSON.parse(data) as QuizType;
 
-  const routes = parsedData.steps.map((step) => {
-    if (step.type === 'WELCOME') {
+  const routes =
+    (parsedData.steps?.map((step) => {
+      if (step.type === 'WELCOME') {
+        return {
+          path: `${basePath}/${step.path}`,
+          element: <WelcomeScreen data={step as WelcomeStep} />,
+        };
+      }
+
+      if (step.type === 'DATE') {
+        return {
+          path: `${basePath}/${step.path}`,
+          element: <BirthDateScreen data={step as BirthDateStep} />,
+        };
+      }
+
+      if (step.type === 'ZODIAC_SIGN') {
+        return {
+          path: `${basePath}/${step.path}`,
+          element: <ZodiacSignScreen data={step as ZodiacSignStep} />,
+        };
+      }
+
       return {
-        path: step.path,
+        path: '*',
         element: <WelcomeScreen data={step as WelcomeStep} />,
       };
-    }
-
-    if (step.type === 'DATE') {
-      return {
-        path: step.path,
-        element: <BirthDateScreen data={step as BirthDateStep} />,
-      };
-    }
-
-    if (step.type === 'ZODIAC_SIGN') {
-      return {
-        path: step.path,
-        element: <ZodiacSignScreen data={step as ZodiacSignStep} />,
-      };
-    }
-
-    return {
-      path: '*',
-      element: <WelcomeScreen data={step as WelcomeStep} />,
-    };
-  }) satisfies RouteObject[];
+    }) satisfies RouteObject[]) || [];
 
   routes.push({
     path: '*',
-    element: <Navigate to="welcome" replace />,
+    element: <Navigate to="/quiz/welcome" replace />,
   });
 
   const allRouts = [

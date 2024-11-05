@@ -24,9 +24,11 @@ interface Props {
 
 export const FormEditor: React.FC<Props> = ({ data, onChange }) => {
   const location = useLocation();
-  const path = location.pathname.replace('/', '');
+  const path = location.pathname.split('/');
+  const lastPath = path[path.length - 1];
+
   const quiz = JSON.parse(data) as Quiz;
-  const currentStepData = quiz.steps.find((step) => step.path === path);
+  const currentStepData = quiz.steps.find((step) => step.path === lastPath);
   const currentStepSchema = getJsonSchemaByType(currentStepData?.type || '');
 
   if (!currentStepData || !currentStepSchema) return null;

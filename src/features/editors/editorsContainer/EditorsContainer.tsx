@@ -46,7 +46,7 @@ interface Props {
 }
 
 export const EditorsContainer: React.FC<Props> = ({ data, setData }) => {
-  const [editorMode, setEditorMode] = useState<'JSON' | 'UI'>('UI');
+  const [editorMode, setEditorMode] = useState<'JSON' | 'UI'>('JSON');
 
   const handleChangeData = (value: string | undefined) => {
     if (value) {

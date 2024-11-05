@@ -7,13 +7,12 @@ import { ZodiacSignScreen } from './steps/ZodiacSign';
 import { WelcomeStep, BirthDateStep, ZodiacSignStep, Quiz as QuizType } from '../../data/stepTypes';
 import { EditorsContainer } from '../editors/editorsContainer/EditorsContainer';
 import { AnswersProvider } from './answersContext/AnswersContext';
+import { BASE_PATH } from '../../constants/routs';
 
 interface Props {
   data: string;
   setData: React.Dispatch<React.SetStateAction<string>>;
 }
-
-const basePath = '/quiz';
 
 export const Quiz: React.FC<Props> = ({ data, setData }) => {
   const parsedData = JSON.parse(data) as QuizType;
@@ -22,21 +21,21 @@ export const Quiz: React.FC<Props> = ({ data, setData }) => {
     (parsedData.steps?.map((step) => {
       if (step.type === 'WELCOME') {
         return {
-          path: `${basePath}/${step.path}`,
+          path: `${BASE_PATH}/${step.path}`,
           element: <WelcomeScreen data={step as WelcomeStep} />,
         };
       }
 
       if (step.type === 'DATE') {
         return {
-          path: `${basePath}/${step.path}`,
+          path: `${BASE_PATH}/${step.path}`,
           element: <BirthDateScreen data={step as BirthDateStep} />,
         };
       }
 
       if (step.type === 'ZODIAC_SIGN') {
         return {
-          path: `${basePath}/${step.path}`,
+          path: `${BASE_PATH}/${step.path}`,
           element: <ZodiacSignScreen data={step as ZodiacSignStep} />,
         };
       }

@@ -7,6 +7,7 @@ import { Layout } from '../../../components/Layout';
 import { BirthDateStep } from '../../../data/stepTypes';
 import { ButtonNext } from '../../../components/ButtonNext';
 import { useAnswersContext } from '../answersContext/useAnswerContext';
+import { BASE_PATH } from '../../../constants/routs';
 
 interface Props {
   data: BirthDateStep;
@@ -27,7 +28,10 @@ export const BirthDateScreen: React.FC<Props> = ({ data }) => {
       header={data.content.header}
       backgroundImage={data.content.backgroundImage}
       buttonNext={
-        <ButtonNext label={data.content.footer?.buttonNext} onNext={() => navigate(`/${data.pathNext}`)} />
+        <ButtonNext
+          label={data.content.footer?.buttonNext}
+          onNext={() => navigate(`${BASE_PATH}/${data.pathNext}`)}
+        />
       }
     >
       <Box>

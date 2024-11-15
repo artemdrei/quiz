@@ -1,5 +1,11 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider, RouteObject, Navigate } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
 
 import { WelcomeScreen } from './steps/Welcome';
 import { BirthDateScreen } from './steps/BirthDate';
@@ -16,52 +22,48 @@ interface Props {
 export const Quiz: React.FC<Props> = ({ data, setData }) => {
   const parsedData = JSON.parse(data) as QuizType;
 
-  const routes = parsedData.steps.map((step) => {
-    if (step.type === 'WELCOME') {
-      return {
-        path: step.path,
-        element: <WelcomeScreen data={step as WelcomeStep} />,
-      };
+  const dynamicRoutes = parsedData.steps?.map((step) => {
+    switch (step.type) {
+      case 'WELCOME':
+        return (
+          <Route key={step.path} path={step.path} element={<WelcomeScreen data={step as WelcomeStep} />} />
+        );
+      case 'DATE':
+        return (
+          <Route
+            key={step.path}
+            path={step.path}
+            element={<BirthDateScreen data={step as BirthDateStep} />}
+          />
+        );
+      case 'ZODIAC_SIGN':
+        return (
+          <Route
+            key={step.path}
+            path={step.path}
+            element={<ZodiacSignScreen data={step as ZodiacSignStep} />}
+          />
+        );
+      default:
+        return <Navigate replace to="/" />;
     }
-
-    if (step.type === 'DATE') {
-      return {
-        path: step.path,
-        element: <BirthDateScreen data={step as BirthDateStep} />,
-      };
-    }
-
-    if (step.type === 'ZODIAC_SIGN') {
-      return {
-        path: step.path,
-        element: <ZodiacSignScreen data={step as ZodiacSignStep} />,
-      };
-    }
-
-    return {
-      path: '*',
-      element: <WelcomeScreen data={step as WelcomeStep} />,
-    };
-  }) satisfies RouteObject[];
-
-  routes.push({
-    path: '*',
-    element: <Navigate to="/welcome" replace />,
   });
 
-  const allRouts = [
-    {
-      path: '/',
-      element: (
-        <AnswersProvider>
-          <EditorsContainer data={data} setData={setData} />
-        </AnswersProvider>
-      ),
-      children: routes,
-    },
-  ];
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route
+        element={
+          <AnswersProvider>
+            <EditorsContainer data={data} setData={setData} />
+          </AnswersProvider>
+        }
+      >
+        {dynamicRoutes}
+        <Route path="*" element={<Navigate to="/welcome" replace />} />
+      </Route>,
+    ),
+    { basename: import.meta.env.BASE_URL },
+  );
 
-  const router = createBrowserRouter(allRouts);
-
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 };

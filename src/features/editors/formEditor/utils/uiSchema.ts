@@ -8,6 +8,9 @@ export const uiSchema: UiSchema = {
   path: {
     'ui:disabled': true,
   },
+  pathNext: {
+    'ui:disabled': true,
+  },
   content: {
     'ui:title': 'Content',
     backgroundImage: {

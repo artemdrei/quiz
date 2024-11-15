@@ -22,13 +22,15 @@ export const BirthDateScreen: React.FC<Props> = ({ data }) => {
     setDateOfBirth(value);
   }, [value, setDateOfBirth]);
 
+  const goNext = () => {
+    navigate(`/${data.pathNext}`);
+  };
+
   return (
     <Layout
       header={data.content.header}
       backgroundImage={data.content.backgroundImage}
-      buttonNext={
-        <ButtonNext label={data.content.footer?.buttonNext} onNext={() => navigate(`/${data.pathNext}`)} />
-      }
+      buttonNext={<ButtonNext label={data.content.footer?.buttonNext} onNext={goNext} />}
     >
       <Box>
         <Typography mb={'20px'} dangerouslySetInnerHTML={{ __html: data.content.question }} />

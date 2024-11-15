@@ -14,13 +14,15 @@ interface Props {
 export const WelcomeScreen: React.FC<Props> = ({ data }) => {
   const navigate = useNavigate();
 
+  const goNext = () => {
+    navigate(`/${data.pathNext}`);
+  };
+
   return (
     <Layout
       header={data.content.header}
       backgroundImage={data.content.backgroundImage}
-      buttonNext={
-        <ButtonNext label={data.content.footer?.buttonNext} onNext={() => navigate(`/${data.pathNext}`)} />
-      }
+      buttonNext={<ButtonNext label={data.content.footer?.buttonNext} onNext={goNext} />}
     >
       <Typography variant="h6" align="center" dangerouslySetInnerHTML={{ __html: data.content.text }} />
     </Layout>

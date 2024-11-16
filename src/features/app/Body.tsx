@@ -5,13 +5,13 @@ import config from '../../data/data.json';
 import { Quiz } from '../quiz/Quiz';
 import { prettifyJson } from '../../utils';
 
-const AppContainerStyled = styled('div')`
+const BodyStyled = styled('div')`
   display: flex;
   width: 100vw;
   height: 100vh;
 `;
 
-export const Main = () => {
+export const Body = () => {
   const [data, setData] = useState('');
 
   useEffect(() => {
@@ -21,8 +21,8 @@ export const Main = () => {
   if (!data) return null;
 
   return (
-    <AppContainerStyled>
+    <BodyStyled>
       <Quiz data={data} setData={setData} />
-    </AppContainerStyled>
+    </BodyStyled>
   );
 };

@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider, CssBaseline, GlobalStyles } from '@mui/material';
-import { Main } from './features/main/Main';
+import { Body } from './Body';
 
 const theme = createTheme();
 const globalStyles = <GlobalStyles styles={{ '*': { margin: 0, padding: 0, boxSizing: 'border-box' } }} />;
@@ -10,7 +10,7 @@ const App = () => {
       <CssBaseline />
       {globalStyles}
 
-      <Main />
+      <Body />
     </ThemeProvider>
   );
 };
